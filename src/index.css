@@ -368,18 +368,63 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
-  .text-title { font-size: 8vw; }
-  .text-subtitle { font-size: 4vw; }
-  .text-detail { font-size: 3.5vw; }
+  .video-container canvas {
+    transform: scale(1.15);
+  }
+
+  .persistent-nav {
+    padding: 1rem 1rem 0.75rem;
+    align-items: flex-start;
+  }
+
+  .nav-brand {
+    font-size: 0.95rem;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .text-title {
+    font-size: clamp(1.75rem, 8vw, 2.8rem);
+    line-height: 1.1;
+    margin-bottom: 0.6rem;
+    white-space: normal;
+    animation: none;
+  }
+
+  .text-subtitle { font-size: clamp(0.85rem, 3.8vw, 1.1rem); }
+  .text-detail { font-size: clamp(0.9rem, 3.2vw, 1rem); }
+
   .text-block.left, .text-block.right {
     text-align: center;
-    left: 5%;
-    right: 5%;
+    left: 1rem;
+    right: 1rem;
     align-items: center;
+    max-width: none;
+    width: auto;
   }
-  .link-item { font-size: 3.5vw; padding: 0.8rem 1.5rem; }
+
+  .text-block.lower-third {
+    bottom: 7%;
+  }
+
+  .read-more-btn {
+    width: min(100%, 240px);
+    padding: 0.8rem 1.25rem;
+    font-size: 0.8rem;
+  }
+
+  .link-item {
+    font-size: 0.82rem;
+    padding: 0.75rem 1rem;
+  }
+
   .quest-log { display: none; }
-  .persistent-nav { padding: 1.5rem; }
+
+  .scroll-container {
+    height: 24000px;
+  }
 }
 
 /* --- Read More Button --- */
@@ -630,16 +675,45 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 768px) {
   .modal-content.glass-panel {
-    padding: 2rem;
+    width: min(94vw, 640px);
+    max-height: 86vh;
+    overflow-y: auto;
+    padding: 1.25rem;
+    border-radius: 18px;
   }
   .modal-title {
-    font-size: 1.8rem;
+    font-size: clamp(1.4rem, 6vw, 2rem);
   }
   .modal-subtitle {
-    font-size: 1rem;
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
   }
   .modal-detail {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+  .modal-badges {
+    gap: 8px;
+    margin-bottom: 1.25rem;
+  }
+  .badge {
+    font-size: 0.72rem;
+    padding: 4px 10px;
+  }
+  .modal-bullets li {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .modal-close {
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+  }
+  .modal-links {
+    flex-wrap: wrap;
+    gap: 0.7rem;
   }
   .scroll-timeline-container {
     display: none;
