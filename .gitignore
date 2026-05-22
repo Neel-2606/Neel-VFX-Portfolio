@@ -1,115 +1,45 @@
-# =========================
-# Logs
-# =========================
+# dependencies
+node_modules/
+
+# build outputs
+dist/
+build/
+.out/
+
+# env files
+.env
+.env.local
+.env.*
+
+# logs
 logs
 *.log
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
-# =========================
-# Dependencies
-# =========================
-node_modules
-
-# =========================
-# Build / Production
-# =========================
-dist
-dist-ssr
-build
-.vercel
-
-# =========================
-# Local Environment Files
-# =========================
-.env
-.env.*
-*.local
-
-# =========================
-# Vite Cache
-# =========================
-.vite
-
-# =========================
-# OS Files
-# =========================
+# OS files
 .DS_Store
 Thumbs.db
 
-# =========================
-# IDE / Editors
-# =========================
-.vscode/*
-!.vscode/extensions.json
-.idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# IDE
+.vscode/
+.idea/
 
-# =========================
-# Cinematic Generated Files
-# =========================
+# large media
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
 
-# Extracted video frames
-public/frames
-frames
-frame_exports
-generated_frames
+# generated frames
+public/frames/
 
-# Temporary render folders
-public/temp
-temp
-tmp
-cache
-renders
-exports
+# cache
+.cache/
+.temp/
+.tmp/
 
-# AI render cache
-render_cache
-video_cache
-
-# =========================
-# Optional Large Source Files
-# (keep only optimized final video)
-# =========================
-
-# Raw source videos
-raw_videos
-source_renders
-uncompressed
-
-# =========================
-# Ignore generated webp/png frames
-# BUT keep manually added assets
-# =========================
-frame_*.webp
-frame_*.png
-frame_*.jpg
-
-# =========================
-# Ignore backup files
-# =========================
-*.bak
-*.backup
-
-# =========================
-# Ignore system metadata
-# =========================
-desktop.ini
-
-# =========================
-# Ignore testing coverage
-# =========================
-coverage
-
-# =========================
-# Ignore misc temp files
-# =========================
-*.tmp
-*.temp
+# misc
+*.local
