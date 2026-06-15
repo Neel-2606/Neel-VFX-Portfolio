@@ -198,7 +198,8 @@ const bootSequence = [
 function App() {
   const [loading, setLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
-  const [muted, setMuted] = useState(true);
+  const [muted, setMuted] = useState(false);
+  const [startupMuted, setStartupMuted] = useState(true);
   const [activeSection, setActiveSection] = useState("intro");
   const [activeModal, setActiveModal] = useState(null);
   
@@ -434,13 +435,39 @@ function App() {
     };
   }, [loading]);
 
+  useEffect(() => {
+    if (loading || !audioRef.current) return;
+
+    const audio = audioRef.current;
+    audio.muted = true;
+
+    audio.play().then(() => {
+      setStartupMuted(false);
+    }).catch((error) => {
+      console.error("Audio play failed:", error);
+    });
+  }, [loading]);
+
+  useEffect(() => {
+    if (loading || !audioRef.current) return;
+
+    const audio = audioRef.current;
+
+    if (startupMuted) return;
+
+    audio.muted = muted;
+  }, [loading, muted, startupMuted]);
+
   const toggleMute = () => {
     setMuted(!muted);
     if (audioRef.current) {
       if (muted) {
+        setStartupMuted(false);
+        audioRef.current.muted = false;
         audioRef.current.play().catch(e => console.error("Audio play failed:", e));
       } else {
         audioRef.current.pause();
+        audioRef.current.muted = true;
       }
     }
   };
@@ -494,7 +521,9 @@ function App() {
         ref={audioRef} 
         src="/dragon.mp4" 
         loop 
-        muted={muted} 
+        autoPlay
+        playsInline
+        muted={muted || startupMuted} 
         style={{ display: 'none' }}
       />
 
