@@ -519,7 +519,8 @@ function App() {
       {/* Streaming background audio */}
       <audio 
         ref={audioRef} 
-        src="/dragon.mp4" 
+        src="https://igyrfnknartjxbtjlmtb.supabase.co/storage/v1/object/public/Dragon%20Portfolio/dragon.mp4" 
+        crossOrigin="anonymous"
         loop 
         autoPlay
         playsInline
