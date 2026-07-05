@@ -252,7 +252,11 @@ function App() {
         const img = new Image();
         const paddedIndex = String(index).padStart(4, '0');
         img.src = `/frames/frame_${paddedIndex}.webp`;
-        img.onload = () => {
+        img.onload = async () => {
+          // Force GPU to decode image before using it to prevent micro-stutters during fast scrolling
+          try {
+            await img.decode();
+          } catch (e) { /* fall back if decode not supported */ }
           loaded++;
           setLoadingProgress(Math.round((loaded / TOTAL_FRAMES) * 100));
           frames[index] = img;
@@ -368,8 +372,9 @@ function App() {
     lenis.on('scroll', onScroll);
 
     const renderCanvas = () => {
-      // Lerp frame
-      currentFrameRef.current = lerp(currentFrameRef.current, targetFrameRef.current, 0.08);
+      // Lenis already handles smooth scrolling. Tying the current frame directly to target frame
+      // makes the scrolling instantly responsive without the "floaty" or laggy double-smoothing.
+      currentFrameRef.current = targetFrameRef.current;
       
       const exactFrame = currentFrameRef.current;
       const frameIndex = Math.floor(exactFrame);
